@@ -1,0 +1,78 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		List Your Practice on Patient Portal
+	</div>
+	<div class="panel-body">
+		<div class="container">
+			
+			<%= form_for @practice do |f| %>
+				<div class="row">
+					<div class="form-group">
+						<label>First Name</label>
+						<%= f.text_field :dr_first_name, placeholder: "Please Enter your First Name", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Last Name</label>
+						<%= f.text_field :dr_last_name, placeholder: "Please Enter your Last Name", class: "form-control" %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+					   <label>Speciality</label>
+							<%= f.select :speciality, [["Allergist","Allergist"],["Anaesthesiologist","Anaesthesiologist"],["Audiologist","Audiologist"],["Anaesthesiologist","Anaesthesiologist"],["Cardiologist","Cardiologist"],["Chiropractor","Chiropractor"],["Diagnostician","Diagnostician"],["Dermatologist","Dermatologist"],["Endocrinologist","Endocrinologist"],["Epidemiologist","Epidemiologist"],["General Physician","General Physician"],["Gastroenterologist","Gastroenterologist"],["Geriatrician","Geriatrician"],["Hematologist","Hematologist"],["Hepatologist","Hepatologist"],["Immunologist","Immunologist"],["Intensivist","Intensivist"],["Internal Medicine Specialist","Internal Medicine Specialist"],["Microbiologist","Microbiologist"],["Medical Geneticist","Medical Geneticist"],["Neonatologist","Neonatologist"],["Neurologist","Neurologist"],["Neurosurgeon","Neurosurgeon"],["Obstetrician/Gynecologist (OB/GYN)","Obstetrician/Gynecologist (OB/GYN)"],["Oncologist","Oncologist"],["Ophthalmologist","Ophthalmologist"],["Orthopedic Surgeon / Orthopedist","Orthopedic Surgeon / Orthopedist"],["ENT(Otolaryngologist)","ENT(Otolaryngologist)"],["Parasitologist","Parasitologist"],["Palliative care specialist","Palliative care specialist"],["Perinatologist","Perinatologist"],["Periodontist","Periodontist"],["Physiotherapist","Physiotherapist"],["Podiatrist / Chiropodist","Podiatrist / Chiropodist"],["Pediatrician","Pediatrician"],["Psychiatrist","Psychiatrist"],["Pulmonologist","Pulmonologist"],["Radiologist","Radiologist"],["Rheumatologist","Rheumatologist"],["Sleep Doctor","Sleep Doctor"],["Surgeon","Surgeon"],["Urologist","Urologist"]], id: "speciality",prompt: "Select...", class: "form-control" %>
+					</div>
+				</div>
+				
+				<div class="row">
+				    <div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :is_insurance %> Accepts Insurance
+						</div>
+				    </div>	
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Preferred Insurance</label>
+							<%= f.select :insurance, [["Aetna","Aetna"], ["Blue Cross Blue Shield","Blue Cross Blue Shield"], ["Cigna","Cigna"],["Davis Vision","Davis Vision"],["Keystone First","Keystone First"],["Medicare","Medicare"],["UnitedHealthCare","UnitedHealthCare"],["Others","Others"]], id: "insurance", prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+				        <div class="col-md-4 select">
+					        <div class="form-group">
+						        <label>Years of Experience</label>
+							    <%= f.select :experience, [["1",1], ["2",2], ["3",3], ["4",4], ["5",5], ["6",6], ["7",7], ["8",8], ["9",9], ["10",10], ["11",11], ["12",12], ["13",13], ["14",14], ["15+",15], ["20+",20], ["25+",25], ["30+",30], ["35+",35], ["40+",40]], id: "experience",prompt: "Select...", class: "form-control" %>
+					        </div>
+				        </div>
+				</div>
+			    
+			    <div class="row">
+					<div class="form-group">
+						<label>Professional Statement</label>
+						<%= f.text_area :professional_statement, rows: 15, placeholder: "Tell us about Yourself", class: "form-control" %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label>Address</label>
+						<%= f.text_field :address, placeholder: "What is your address?", class: "form-control" %>
+					</div>
+				</div>
+				<div class="row">
+						<div class="form-group">
+							<label>Zip Code</label>
+							<div class="input-group">
+								<%= f.text_field :zip_code, placeholder: "47201", class: "form-group" %>
+							</div>	
+						</div>
+				</div>
+				
+				<div class="actions">
+					<%= f.submit "Save", class: "btn btn-primary" %>
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
