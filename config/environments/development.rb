@@ -48,4 +48,5 @@ user_name: 'shreya19888',
 password: '123456789Sh',
 authentication: 'plain'
 }
+Paperclip.options[:command_path] = "/usr/local/bin/"
 end

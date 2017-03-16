@@ -16,6 +16,7 @@ gem 'omniauth', '~> 1.6', '>= 1.6.1'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem "paperclip", "~> 5.0.0.beta1"
 
 group :development, :test do
   gem 'byebug'

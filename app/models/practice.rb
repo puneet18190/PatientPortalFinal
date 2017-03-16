@@ -1,5 +1,6 @@
 class Practice < ActiveRecord::Base
   belongs_to :user
+  has_many :photos
   
   validates :dr_first_name, presence: true
   validates :dr_last_name,  presence: true

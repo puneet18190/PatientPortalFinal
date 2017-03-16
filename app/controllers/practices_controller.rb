@@ -6,7 +6,7 @@ class PracticesController < ApplicationController
   end
 
   def show
-    
+    @photos = @practice.photos
   end
 
   def new
@@ -14,22 +14,38 @@ class PracticesController < ApplicationController
   end
 
   def create
-    @practice = current_user.practices.build
-    
-    if @practice.save
-      redirect_to @practice,notice:"Saved..."
-    else
+     @practice = current_user.practices.build(practice_params)
+     if @practice.save
+       if params[:images] 
+         params[:images].each do |image|
+           @practice.photos.create(image: image)
+           end
+       end
+           @photos = @practice.photos
+           redirect_to edit_practice_path(@practice), notice: "Saved..."
+        else
       render :new
-    end
+     end
   end
 
   def edit
-   
+   if current_user.id == @practice.user.id
+      @photos = @practice.photos
+    else
+      redirect_to root_path, notice: "You don't have permission."
+   end
   end
 
   def update
     if @practice.update(practice_params)
-      redirect_to @practice,notice:"Updated..."
+
+      if params[:images] 
+        params[:images].each do |image|
+          @practice.photos.create(image: image)
+        end
+      end
+
+      redirect_to edit_practice_path(@practice), notice: "Updated..."
     else
       render :edit
     end
