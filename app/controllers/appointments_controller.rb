@@ -8,6 +8,10 @@ class AppointmentsController < ApplicationController
 
 		render json: appointments
 	end
+	
+	def your_trips
+		@trips = current_user.appointments
+	end
 
 	def create
 		@appointment = current_user.appointments.create(appointment_params)

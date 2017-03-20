@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     resources :appointments, only: [:create]
   end
   get '/preload' => 'appointments#preload'
+  get '/your_trips' => 'appointments#your_trips'
 end
