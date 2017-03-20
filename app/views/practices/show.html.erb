@@ -1,2 +1,149 @@
-<h1>Practices#show</h1>
-<p>Find me in app/views/practices/show.html.erb</p>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<!-- Main Info -->
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-3 text-center">
+						<%= image_tag avatar_url(@practice.user), class: "img-circle avatar-large" %><br><br>
+						Dr.<%= @practice.dr_first_name %>
+					</div>
+
+					<div class="col-md-9">
+					    <h4 style="display:inline-block;">Dr.<%= @practice.dr_first_name %></h4>
+						<h4 style="display:inline-block;"><%= @practice.dr_last_name %></h4>
+						<h4>Specialization: <%= @practice.speciality %></h4>
+						<h4><%= @practice.experience %> Years of Practice</h4>
+						<h5>Address: <%= @practice.address %></h5>
+						<h5><%= @practice.zip_code %></h5>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- About -->
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Know Your Doctor</h4>
+				<p><%= @practice.professional_statement %></p>
+			</div>
+		</div>
+
+		<!-- Amenities -->
+		<div class="row">
+			<div class="col-md-2">
+				<p>Insurance Information</p>
+			</div>
+			<div class="col-md-10">
+				<div class="row">
+					<div class="col-md-6">
+							<li class="<%= 'text-line-through' if !@practice.is_insurance %>">Insurance</li>
+					</div>
+					<h5>Preferred Insurance: <%= @practice.insurance %></h5>
+				</div>
+			</div>
+		</div>
+		
+			<div class="col-md-4">
+				<!-- Appointments form -->	
+				<%= render 'appointments/form' %>
+			</div>
+		</div>   					
+
+		<!-- Carousel -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				  
+					<% if @photos %>
+						<!-- Indicators -->
+				    <ol class="carousel-indicators">
+							<% @photos.each do |photo| %>
+								<li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
+							<% end %>	
+						</ol>				
+					<% end %>     
+
+				  <div class="carousel-inner" role="listbox">
+				    <% if @photos %>				
+							<% @photos.each do |photo| %>
+								<div class="item <%= 'active' if photo.id == @photos[0].id %>">          
+				          <%= image_tag photo.image.url() %>
+				        </div>
+							<% end %>	
+						<% end %>
+				  </div>
+
+				  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<hr>
+		
+		<!-- Google Map -->
+		<div class="row">
+			<div class="col-md-12">
+				
+				<div id="map"></div>
+
+				<style>
+		      #map {
+		        width: 100%;
+		        height: 400px;
+		      }
+		    </style>
+
+		    <script src="https://maps.googleapis.com/maps/api/js"></script>
+		    <script>
+		      function initialize() {
+		        var mapCanvas = document.getElementById('map');
+		        var mapOptions = {
+		          center: new google.maps.LatLng(<%= @practice.latitude %>, <%= @practice.longitude %>),
+		          zoom: 14,
+		          mapTypeId: google.maps.MapTypeId.ROADMAP
+		        }
+		        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+		        var marker = new google.maps.Marker({
+		        	position: new google.maps.LatLng(<%= @practice.latitude %>, <%= @practice.longitude %>),
+		        	title: "AirAlien" 
+		        });
+
+		        marker.setMap(map);
+		      }
+		      google.maps.event.addDomListener(window, 'load', initialize);
+		    </script>
+
+
+			</div>
+		</div>
+
+		<!-- Close by Doctor's -->
+		<h3>Other Doctors Nearby:</h3>
+		<div class="row">
+			<% for practice in @practice.nearbys(1) %>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<%= link_to @practice.speciality, @practice %><br>
+							
+						</div>
+					</div>
+				</div>
+
+			<% end %>
+		</div>
+
+
+	</div>
+</div>

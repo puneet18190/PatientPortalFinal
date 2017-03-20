@@ -3,6 +3,9 @@
 @import "toastr";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "jquery-ui/smoothness";
+
+
 
 body {  
   color: #565a5c;
@@ -212,4 +215,31 @@ input[type="checkbox"]:checked:before {
 
 .panel-heading.preview img{  
   width: 100%;
+}
+
+.amenities li {
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+
+.text-line-through {
+  text-decoration: line-through
+}
+
+.reservation-table td {
+  width: 100%;
+  border: 1px solid #dce0e0;
+  padding: 10px;
+}
+
+.wide {
+  width: 100%;
+}
+
+.price_tag {
+  background-color: #606567;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

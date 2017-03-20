@@ -11,6 +11,7 @@ class CreatePractices < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.string :insurance
       t.integer :zip_code
+      t.integer :price
 
       t.timestamps null: false
     end

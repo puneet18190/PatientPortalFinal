@@ -1,6 +1,10 @@
 class Practice < ActiveRecord::Base
   belongs_to :user
   has_many :photos
+  has_many :appointments
+  
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
   
   validates :dr_first_name, presence: true
   validates :dr_last_name,  presence: true

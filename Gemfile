@@ -17,6 +17,12 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "paperclip", "~> 5.0.0.beta1"
+gem 'geocoder', '~> 1.4', '>= 1.4.3'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'rails-erd'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-ui-themes', '~> 0.0.11'
+
 
 group :development, :test do
   gem 'byebug'

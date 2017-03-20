@@ -60,4 +60,3 @@ class PracticesController < ApplicationController
     params.require(:practice).permit(:dr_first_name,:dr_last_name,:experience,:speciality,:address,:professional_statement,:is_insurance,:insurance,:zip_code)
   end
 end
-

@@ -1,0 +1,84 @@
+<%= form_for([@practice, @practice.appointments.new]) do |f| %>
+
+	<div class="row">
+		<div class="col-md-6">
+			<label>Date of Appointment</label>
+			<%= f.text_field :date, readonly: 'true', placeholder: 'Start Date' , class: 'form-control' %>			
+		</div>
+		<div class="col-md-6">
+			<label>Time of the Appointment</label>
+			<%= f.text_field :time, placeholder: 'Time' , class: 'form-control' %>		
+		</div>
+	</div>
+
+	<%= f.hidden_field :practice_id, value: @practice.id %>
+	<%= f.hidden_field :price, value: @practice.price %>
+	<%= f.hidden_field :total, id: 'appointment_total' %>
+
+	
+	<div id="preview" style="display: none">
+		<h4><span id="message"></span></h4>
+
+		<table class="reservation-table" >
+			<tbody>
+				<tr>
+					<td>Day(s)</td>
+					<td><span id="Appointment"></span></td>
+				</tr>
+				<tr>
+					<td>Total</td>
+					<td><span id="Appointment Total"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br>
+	<%= f.submit "Book Now", class: "btn btn-primary" %>
+	
+<% end %>
+
+<script>
+
+	function unavailable(date) {
+		dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+		return [$.inArray(dmy, unavailableDates) == -1];
+	}
+
+	$(function() {
+
+		unavailableDates = [];
+
+		$.ajax({
+			url: '/preload',
+			data: {'practice_id': <%= @practice.id %>},
+			dataType: 'json',
+			success: function(data) {
+
+				$.each(data, function(arrID, arrValue) {
+					for(var d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)) {
+						unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+					}
+				});
+
+				$('#appointment_date').datepicker({
+					dateFormat: 'dd-mm-yy',
+					minDate: 0,
+					maxDate: '6m',
+					beforeShowDay: unavailable,
+
+				});
+				
+				$('#appointment_time').timepicker({
+					'disableTimeRanges': [
+						['1am', '2am'],
+						['3am', '4:01am']]
+					
+				});
+			}
+		});
+
+		
+
+	});
+</script>

@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :practices
   resources :photos
-
+  resources :practices do
+    resources :appointments, only: [:create]
+  end
+  get '/preload' => 'appointments#preload'
 end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  practice_id: 
+  date: 2017-03-20 03:23:13
+  time: 2017-03-20 03:23:13
+  price: 1
+  total: 1
+
+two:
+  user_id: 
+  practice_id: 
+  date: 2017-03-20 03:23:13
+  time: 2017-03-20 03:23:13
+  price: 1
+  total: 1

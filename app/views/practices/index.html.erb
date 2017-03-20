@@ -2,6 +2,7 @@
 	<div class="col-md-3">
 		<ul class="sidebar-list">
 			<li class="sidebar-item"><%= link_to "Your Appointments", practices_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Your Reservations", practices_path, class: "sidebar-link" %></li>
 		</ul>
 	</div>
 	<div class="col-md-9">
@@ -14,14 +15,22 @@
 				<% @practices.each do |practice| %>
 					<div class="row">
 						<div class="col-md-2">
+							<%= image_tag practice.photos[0].image.url(:thumb) if practice.photos.length > 0 %>
 						</div>		
 						<div class="col-md-7">
-							<h4><%= practice.dr_first_name %></h4>
+							<h4 style="display:inline-block;">Dr.<%= practice.dr_first_name %></h4>
+							<h4 style="display:inline-block;"><%= practice.dr_last_name %></h4>
+							<h5>Speciality:<%= practice.speciality %></h5>
+							<h5><%= practice.experience %> Years of Practice</h5>
+							<h6>Address: <%= practice.address %></h6>
+							<h6><%= practice.zip_code %></h6>
+							
 						</div>		
 						<div class="col-md-3 right">
 							<%= link_to "Update", edit_practice_path(practice), class: "btn btn-primary" %>
 						</div>		
 					</div>
+					<hr>
 				<% end %>
 
 			</div>

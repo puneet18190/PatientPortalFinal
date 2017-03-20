@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  
-  <%= render 'shared/navbar' %>
-  <%= render 'shared/message' %>
+	<head>
+	  <title>PatientPortal</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="/jquery-ui.css">
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+	  <!-- Updated stylesheet url -->
+	  <link rel="stylesheet" href="//jonthornton.github.io/jquery-timepicker/jquery.timepicker.css">
+	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
 
-  <div class="container">
-    <%= yield %>
-  </div>
-</body>
+		<%= render 'shared/navbar' %>
+
+		<%= render 'shared/message' %>
+
+		<div class="container">
+			<%= yield %>	
+		</div>
+		
+	</body>
 </html>

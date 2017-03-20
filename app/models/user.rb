@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true, length: {maximum: 50}
   
   has_many :practices
+  has_many :appointments
 
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -18,6 +19,12 @@ class User < ActiveRecord::Base
         user.image = auth.info.image
         user.password = Devise.friendly_token[0,20]
       end
+  end
+  
+  def google_client
+     client = Google::Apis::FitnessV1::FitnessService.new
+     @g_data = client.users.dataSources.list
+     
   end
 
 end

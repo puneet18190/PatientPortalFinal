@@ -44,9 +44,8 @@ config.action_mailer.smtp_settings = {
 address: 'smtp.sendgrid.net',
 port: 2525,
 enable_starttls_auto: true,
-###Use your own credentials below
-user_name: 'YOUR ID',
-password: 'YOUR PASSWORD',
+user_name: 'shreya19888',
+password: '123456789Sh',
 authentication: 'plain'
 }
 Paperclip.options[:command_path] = "/usr/local/bin/"

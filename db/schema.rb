@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315224350) do
+ActiveRecord::Schema.define(version: 20170320032313) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "practice_id"
+    t.date     "date"
+    t.time     "time"
+    t.integer  "price"
+    t.integer  "total"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "appointments", ["practice_id"], name: "index_appointments_on_practice_id"
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
   create_table "photos", force: :cascade do |t|
     t.integer  "practice_id"
@@ -36,8 +50,11 @@ ActiveRecord::Schema.define(version: 20170315224350) do
     t.integer  "user_id"
     t.string   "insurance"
     t.integer  "zip_code"
+    t.integer  "price"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "practices", ["user_id"], name: "index_practices_on_user_id"
