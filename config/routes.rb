@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :practices do
     resources :appointments, only: [:create]
   end
+  resources :conversations, only: [:index,:create] do
+    resources :messages, only: [:index,:create]
+  end
   get '/preload' => 'appointments#preload'
   get '/your_trips' => 'appointments#your_trips'
 end

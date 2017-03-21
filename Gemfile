@@ -24,6 +24,7 @@ gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'jquery-ui-themes', '~> 0.0.11'
 
 
+
 group :development, :test do
   gem 'byebug'
 end

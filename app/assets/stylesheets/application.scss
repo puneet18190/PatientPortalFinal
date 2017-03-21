@@ -1,11 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "toastr";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "jquery-ui/smoothness";
-
-
 
 body {  
   color: #565a5c;
@@ -242,4 +237,13 @@ input[type="checkbox"]:checked:before {
   font-size: 20px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+}
+
+.conversation:hover, .conversation:focus {
+  background-color: #F4F4F5;
 }

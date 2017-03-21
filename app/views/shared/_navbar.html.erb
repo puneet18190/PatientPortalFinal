@@ -24,7 +24,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a href="#">Your Appointments</a></li>
+              <li><%= link_to "Your Past Appointments", your_trips_path, class: "sidebar-link" %></li>
               <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Account Setting</a></li>
@@ -33,10 +33,14 @@
           </li>
         <% end %>
         <li>
-          <a href="#"><i class="fa fa-envelope-o"></i> Messages</a>
+          <%= link_to conversations_path do %>
+            <i class="fa fa-envelope-o"></i> Messages
+          <% end %>
         </li>
         <li>
-          <a href="#"<i class="fa fa-user-md fa-2x"></i> List Your Practice</a>
+          <%= link_to new_practice_path do %>
+          <i class="fa fa-user-md fa-2x"></i> List Your Practice
+          <% end %>
         </li>
 
         

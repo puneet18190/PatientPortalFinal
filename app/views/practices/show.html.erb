@@ -128,21 +128,6 @@
 			</div>
 		</div>
 
-		<!-- Close by Doctor's -->
-		<h3>Other Doctors Nearby:</h3>
-		<div class="row">
-			<% for practice in @practice.nearbys(1) %>
-				<div class="col-md-4">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<%= link_to @practice.speciality, @practice %><br>
-							
-						</div>
-					</div>
-				</div>
-
-			<% end %>
-		</div>
 
 
 	</div>

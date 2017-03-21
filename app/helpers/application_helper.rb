@@ -4,7 +4,7 @@ module ApplicationHelper
 		if user.image
 			user.image
 		else
-			"https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identical&s=150"
+			"https://woodzon.com/image/data/profile_icon.png"
 		end
 	end
 end
