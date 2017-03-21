@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321015707) do
+ActiveRecord::Schema.define(version: 20170321132423) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170321015707) do
     t.integer  "total"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "status"
+    t.text     "reason"
   end
 
   add_index "appointments", ["practice_id"], name: "index_appointments_on_practice_id"
