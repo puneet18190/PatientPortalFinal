@@ -2,6 +2,7 @@ class Practice < ActiveRecord::Base
   belongs_to :user
   has_many :photos
   has_many :appointments
+  has_many :reviews
   
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -13,4 +14,8 @@ class Practice < ActiveRecord::Base
   validates :address,       presence: true 
   validates :professional_statement,presence: true
   validates :is_insurance,  presence: true 
+
+ def average_rating
+    reviews.count == 0 ? 0 : reviews.average(:star).round(2)
+ end
 end

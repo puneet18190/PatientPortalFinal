@@ -7,6 +7,10 @@ class PracticesController < ApplicationController
 
   def show
     @photos = @practice.photos
+    @booked = Appointment.where("practice_id = ? AND user_id = ?", @practice.id, current_user.id).present? if current_user
+
+    @reviews = @practice.reviews
+    @hasReview = @reviews.find_by(user_id: current_user.id) if current_user
   end
 
   def new
