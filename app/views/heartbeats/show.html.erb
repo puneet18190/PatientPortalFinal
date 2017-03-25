@@ -10,5 +10,10 @@
   <%= @heartbeat.count %>
 </p>
 
+<p>
+  <strong>Measuring Unit</strong>
+  <%= @heartbeat.msr %>
+</p>
+
 <%= link_to 'Edit', edit_heartbeat_path(@heartbeat) %> |
 <%= link_to 'Back', heartbeats_path %>

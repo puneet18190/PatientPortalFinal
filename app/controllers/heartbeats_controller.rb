@@ -70,6 +70,6 @@ class HeartbeatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def heartbeat_params
-      params.require(:heartbeat).permit(:date, :count)
+      params.require(:heartbeat).permit(:date, :count, :msr)
     end
 end

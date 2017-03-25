@@ -23,6 +23,11 @@
     <%= f.label :nonfasting,"Non-Fasting",:class=>'inline betaLabelTextField',class: 'form-control-label' %><br>
     <%= f.number_field :nonfasting,:class=>'betaTextField',class: 'form-control' %>
   </div>
+    <div class="form-group">
+      <label>Measuring Unit</label>
+      <%= f.select :unit, [ 'mmol/L','mg/dL' ], :prompt => 'Select Unit' %>
+      </div>
+	<br>
   <div class="actions">
     <%= f.submit %>
   </div>

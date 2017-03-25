@@ -4,7 +4,7 @@ class CreateBloodsugars < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.float :fasting
       t.float :nonfasting
-      t.string :measuredd
+      t.string :unit
       t.datetime :date
 
       t.timestamps null: false

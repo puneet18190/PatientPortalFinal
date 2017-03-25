@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170322045450) do
     t.integer  "user_id"
     t.float    "fasting"
     t.float    "nonfasting"
-    t.string   "measuredd"
+    t.string   "unit"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20170322045450) do
   create_table "weights", force: :cascade do |t|
     t.integer  "user_id"
     t.float    "weight"
-    t.string   "measure"
+    t.string   "unitt"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

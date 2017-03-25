@@ -70,6 +70,6 @@ class BloodsugarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bloodsugar_params
-      params.require(:bloodsugar).permit(:date, :fasting, :nonfasting)
+      params.require(:bloodsugar).permit(:date, :fasting, :nonfasting,  :unit)
     end
 end

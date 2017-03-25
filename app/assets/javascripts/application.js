@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+
 //= require bootstrap-sprockets
+//= require jquery
 //= require moment
 //= require jquery_ujs
 //= require jquery-ui

@@ -70,6 +70,6 @@ class WeightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weight_params
-      params.require(:weight).permit(:date, :weight)
+      params.require(:weight).permit(:date, :weight, :unitt)
     end
 end
