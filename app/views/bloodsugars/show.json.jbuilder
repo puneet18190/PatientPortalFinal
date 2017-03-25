@@ -1,0 +1,1 @@
+json.partial! "bloodsugars/bloodsugar", bloodsugar: @bloodsugar

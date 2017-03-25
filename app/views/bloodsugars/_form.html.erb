@@ -1,0 +1,29 @@
+<%= form_for(@bloodsugar) do |f| %>
+  <% if @bloodsugar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bloodsugar.errors.count, "error") %> prohibited this bloodsugar from being saved:</h2>
+
+      <ul>
+      <% @bloodsugar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date,class: 'form-control-label' %><br>
+    <%= f.date_select :date,class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :fasting,class: 'form-control-label' %><br>
+    <%= f.number_field :fasting,class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :nonfasting,"Non-Fasting",:class=>'inline betaLabelTextField',class: 'form-control-label' %><br>
+    <%= f.number_field :nonfasting,:class=>'betaTextField',class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

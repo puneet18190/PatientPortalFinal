@@ -1,0 +1,35 @@
+<%= form_for(@bloodpressure) do |f| %>
+  <% if @bloodpressure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bloodpressure.errors.count, "error") %> prohibited this bloodpressure from being saved:</h2>
+
+      <ul>
+      <% @bloodpressure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date,class: 'form-control-label' %><br>
+    <%= f.date_select :date,class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :systolic,class: 'form-control-label' %><br>
+    <%= f.text_field :systolic,class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :dystolic,class: 'form-control-label' %><br>
+    <%= f.text_field :dystolic,class: 'form-control' %>
+  </div>
+  
+    <div class="form-group">
+      <label>Measuring Unit</label>
+      <%= f.select :measuredd, [ 'mmHg' ], :prompt => 'Select Unit' %>
+      </div>
+	<br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

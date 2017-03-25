@@ -9,6 +9,10 @@
 			<label>Time of the Appointment</label>
 			<%= f.text_field :time, placeholder: 'Time' , class: 'form-control' %>		
 		</div>
+		<div class="col-md-6">
+			<label>Reason for your appointment</label>
+			<%= f.text_area :reason, placeholder: 'Briefly explain the reason for your visit' , class: 'form-control' %>		
+		</div>
 	</div>
 
 	<%= f.hidden_field :practice_id, value: @practice.id %>

@@ -1,0 +1,1 @@
+json.array! @bloodsugars, partial: 'bloodsugars/bloodsugar', as: :bloodsugar

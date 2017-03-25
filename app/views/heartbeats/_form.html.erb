@@ -1,0 +1,25 @@
+<%= form_for(@heartbeat) do |f| %>
+  <% if @heartbeat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@heartbeat.errors.count, "error") %> prohibited this heartbeat from being saved:</h2>
+
+      <ul>
+      <% @heartbeat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :date, class: 'form-control-label' %><br>
+    <%= f.date_select :date,class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :count, "Beats Per Minute",:class=>'inline betaLabelTextField',class: 'form-control-label' %><br>
+    <%= f.number_field :count,:class=>'betaTextField',class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

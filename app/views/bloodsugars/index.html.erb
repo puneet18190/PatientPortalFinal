@@ -1,0 +1,48 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+
+<h1>Blood-Sugar Report</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div style="border:2px solid black">
+<%= line_chart [
+  {name: "Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:fasting)},
+  {name: "Non-Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:nonfasting)}
+] %>
+</div>
+<br>
+
+<table class ="table table-striped">
+  <thead class ="thead thead-default">
+    <tr>
+      <th>Date</th>
+      <th>Fasting Sugar</th>
+      <th>Non-Fasting Sugar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bloodsugars.each do |bloodsugar| %>
+      <tr>
+        <td><%= bloodsugar.date.strftime("%m/%d/%Y")</td>
+        <td><%= bloodsugar.fasting %></td>
+        <td><%= bloodsugar.nonfasting %></td>
+        <td><%= link_to 'Show', bloodsugar,class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_bloodsugar_path(bloodsugar),class: 'btn btn-mini btn-success' %></td>
+        <td><%= link_to 'Destroy', bloodsugar, method: :delete,class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="paginator">
+<%= paginate @bloodsugars %>
+</div>
+
+<br>
+
+
+<%= link_to 'New Bloodsugar', new_bloodsugar_path,class: "btn btn-secondary"%>

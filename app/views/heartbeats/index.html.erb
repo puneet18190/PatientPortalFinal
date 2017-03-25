@@ -1,0 +1,44 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+
+<h1>Heartbeats</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div style="border:2px solid black">
+<%= line_chart Heartbeat.group("date(heartbeats.date)").average(:count),xtitle: "Date", ytitle: "Beats per Minute"%>
+</div>
+<br>
+<table class ="table table-striped">
+  <thead class ="thead thead-default">
+    <tr>
+      <th>Date</th>
+      <th>Beats Per Minute(BPM)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @heartbeats.each do |heartbeat| %>
+      <tr>
+        <td><%= heartbeat.date.strftime("%m/%d/%Y") %></td>
+        <td><%= heartbeat.count %></td>
+        <td><%= link_to 'Show', heartbeat,class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_heartbeat_path(heartbeat),class: 'btn btn-mini btn-success' %></td>
+        <td><%= link_to 'Cancel', heartbeat, method: :delete,class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="paginator">
+<%= paginate @heartbeats %>
+</div>
+
+<br>
+
+
+
+<%= link_to 'New Heartbeat', new_heartbeat_path,class: "btn btn-secondary"%>

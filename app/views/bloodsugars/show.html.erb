@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @bloodsugar.date %>
+</p>
+
+<p>
+  <strong>Fasting:</strong>
+  <%= @bloodsugar.fasting %>
+</p>
+
+<p>
+  <strong>Non-fasting:</strong>
+  <%= @bloodsugar.nonfasting %>
+</p>
+
+<%= link_to 'Edit', edit_bloodsugar_path(@bloodsugar) %> |
+<%= link_to 'Back', bloodsugars_path %>

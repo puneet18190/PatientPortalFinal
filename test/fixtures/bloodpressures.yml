@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  systolic: 1.5
+  dystolic: 1.5
+  date: 2017-03-22
+
+two:
+  user_id: 
+  systolic: 1.5
+  dystolic: 1.5
+  date: 2017-03-22

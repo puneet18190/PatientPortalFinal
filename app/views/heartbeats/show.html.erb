@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @heartbeat.date %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @heartbeat.count %>
+</p>
+
+<%= link_to 'Edit', edit_heartbeat_path(@heartbeat) %> |
+<%= link_to 'Back', heartbeats_path %>

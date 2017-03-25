@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  fasting: 1.5
+  nonfasting: 1.5
+  measuredd: MyText
+  date: 2017-03-22
+
+two:
+  user_id: 
+  fasting: 1.5
+  nonfasting: 1.5
+  measuredd: MyText
+  date: 2017-03-22

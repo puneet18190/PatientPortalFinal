@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-   before_action :authenticate_user!
+   before_action :authenticate_user!, except: [:notify]
 
 	def preload
 		practice = Practice.find(params[:practice_id])

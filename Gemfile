@@ -22,8 +22,10 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'rails-erd'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'jquery-ui-themes', '~> 0.0.11'
-
-
+gem 'ransack', '~> 1.8', '>= 1.8.2'
+gem 'carrierwave', '~> 1.0'
+gem 'chartkick', '~> 1.2.4'
+gem 'kaminari', '~> 0.17.0'
 
 group :development, :test do
   gem 'byebug'

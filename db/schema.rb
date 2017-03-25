@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321132423) do
+ActiveRecord::Schema.define(version: 20170322045450) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "practice_id"
     t.date     "date"
     t.time     "time"
-    t.integer  "price"
-    t.integer  "total"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "price",       default: 200
+    t.integer  "total",       default: 300
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.boolean  "status"
     t.text     "reason"
   end
@@ -29,12 +29,47 @@ ActiveRecord::Schema.define(version: 20170321132423) do
   add_index "appointments", ["practice_id"], name: "index_appointments_on_practice_id"
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
 
+  create_table "bloodpressures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "systolic"
+    t.float    "dystolic"
+    t.string   "measuredd"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bloodpressures", ["user_id"], name: "index_bloodpressures_on_user_id"
+
+  create_table "bloodsugars", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "fasting"
+    t.float    "nonfasting"
+    t.string   "measuredd"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bloodsugars", ["user_id"], name: "index_bloodsugars_on_user_id"
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "heartbeats", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "count"
+    t.date     "date"
+    t.string   "msr",        default: "BPM"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "heartbeats", ["user_id"], name: "index_heartbeats_on_user_id"
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
@@ -79,17 +114,38 @@ ActiveRecord::Schema.define(version: 20170321132423) do
 
   add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
+  create_table "reports", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reports", ["user_id"], name: "index_reports_on_user_id"
+
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.integer  "star"
+    t.integer  "star",        default: 1
     t.integer  "practice_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "reviews", ["practice_id"], name: "index_reviews_on_practice_id"
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+
+  create_table "temperatures", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "temperature"
+    t.string   "measured"
+    t.datetime "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "temperatures", ["user_id"], name: "index_temperatures_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -118,5 +174,16 @@ ActiveRecord::Schema.define(version: 20170321132423) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weights", force: :cascade do |t|
+    t.integer  "user_id"
+    t.float    "weight"
+    t.string   "measure"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "weights", ["user_id"], name: "index_weights_on_user_id"
 
 end

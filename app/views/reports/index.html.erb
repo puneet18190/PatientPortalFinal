@@ -1,0 +1,32 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Download Link</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.name %></td>
+        <td><%= link_to "Download Report", report.attachment_url %></td>
+        <td><%= button_to "Delete",  report, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{report.name}?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<br>
+
+
+<%= link_to "New Report", new_report_path, class: "btn btn-primary" %>

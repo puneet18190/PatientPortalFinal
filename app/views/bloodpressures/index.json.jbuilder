@@ -1,0 +1,1 @@
+json.array! @bloodpressures, partial: 'bloodpressures/bloodpressure', as: :bloodpressure

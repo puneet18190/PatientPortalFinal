@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-3">
+		<ul class="sidebar-list">
+			<li class="sidebar-item"><%= link_to "Your Practices", practices_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Your Patients", your_appointments_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Past Doctor's appointments", your_trips_path, class: "sidebar-link" %></li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Your Patients
+			</div>
+			<div class="panel-body">
+				<% @practices.each do |practice| %>
+					
+					<% practice.appointments.each do |appointment| %>
+						<% if appointment.status %>
+							<div class="row">
+								<div class="col-md-2">
+									<%= appointment.date.strftime('%v') %>
+								</div>	
+								<div class="col-md-2">
+									<%= link_to user_path(appointment.user) do %>
+										<%= image_tag avatar_url(appointment.user), class: "img-circle avatar-medium" %>
+									<% end %>	
+								</div>	
+								<div class="col-md-2 right">
+									<h4>$<%= appointment.total %></h4>
+								</div>	
+							</div>
+							<hr>
+						<% end %>
+					<% end %>
+
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+</div>

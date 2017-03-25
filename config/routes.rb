@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :practices
   resources :photos
+  resources :reports
+  resources :bloodsugars
+  resources :bloodpressures
+  resources :temperatures
+  resources :weights
+  resources :heartbeats
   resources :practices do
     resources :appointments, only: [:create]
   end
@@ -23,6 +29,17 @@ Rails.application.routes.draw do
   resources :practices do
     resources :reviews, only: [:create,:destroy]
   end
+  
+  get '/vital' => 'pages#vital'
+  
   get '/preload' => 'appointments#preload'
+  get '/preview' => 'appointments#preview'
+
   get '/your_trips' => 'appointments#your_trips'
+  get '/your_appointments' => 'appointments#your_appointments'
+
+  post '/notify' => 'appointments#notify'
+  post '/your_trips' => 'appointments#your_trips'
+  
+  get '/search' => 'pages#search'
 end

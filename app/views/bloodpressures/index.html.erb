@@ -1,0 +1,51 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+
+<h1>Bloodpressure Report</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div style="border:2px solid black">
+<%= line_chart [
+  {name: "Systolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:systolic)},
+  {name: "Dystolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:dystolic)}
+] %>
+</div>
+<br>
+
+<table class ="table table-striped">
+  <thead class ="thead thead-default">
+    <tr>
+      <th>Date</th>
+      <th>Systolic Pressure</th>
+      <th>Dystolic Pressure</th>
+      <th>Measuring Unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bloodpressures.each do |bloodpressure| %>
+      <tr>
+        <td><%= bloodpressure.date.strftime("%d/%m/%Y") %></td>
+        <td><%= bloodpressure.systolic %></td>
+        <td><%= bloodpressure.dystolic %></td>
+        <td><%= bloodpressure.measuredd %></td>
+        <td><%= link_to 'Show', bloodpressure,class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Edit', edit_bloodpressure_path(bloodpressure),class: 'btn btn-mini btn-success' %></td>
+        <td><%= link_to 'Destroy', bloodpressure, method: :delete,class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="paginator">
+
+</div>
+
+<br>
+
+
+<%= link_to 'New Bloodpressure Record', new_bloodpressure_path,class: "btn btn-secondary"%>
