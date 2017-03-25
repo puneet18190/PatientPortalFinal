@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   has_many :practices
   has_many :appointments
   has_many :reviews
+  has_many :reports
+  has_many :bloodpressures
+  has_many :bloodsugars
+  has_many :heartbeats
+  has_many :temperatures
+  has_many :weights
 
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
