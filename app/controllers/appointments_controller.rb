@@ -20,7 +20,7 @@ class AppointmentsController < ApplicationController
 				cmd: '_xclick',
 				upload: 1,
 				notify_url: 'https://patientportalfinal-shreya19888.c9users.io/notify',
-				amount: @appointment.total,
+				amount: @appointment.price,
 				item_name: @appointment.practice.speciality,
 				item_number: @appointment.id,
 				quantity: '1',
@@ -60,15 +60,9 @@ class AppointmentsController < ApplicationController
 	end
 	
 	private
-		def is_conflict(date)
-			practice = Practice.find(params[:practice_id])
-
-			check = practice.appointments.where("? < date ", date)
-			check.size > 0? true : false
-		end
 		
 		
 		def appointment_params
-			params.require(:appointment).permit(:date, :time, :price, :total, :practice_id)
+			params.require(:appointment).permit(:date, :time, :price, :total, :tax, :coverage, :practice_id)
 		end
 end

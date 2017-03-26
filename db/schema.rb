@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20170322045450) do
     t.integer  "practice_id"
     t.date     "date"
     t.time     "time"
-    t.integer  "price",       default: 200
-    t.integer  "total",       default: 300
+    t.integer  "price"
+    t.integer  "tax",         default: 100
+    t.integer  "coverage",    default: 150
+    t.integer  "total"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "status"
