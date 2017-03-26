@@ -5,17 +5,18 @@ class HeartbeatsController < ApplicationController
   # GET /heartbeats
   # GET /heartbeats.json
   def index
-    @heartbeats = Heartbeat.all.page(params[:page]).per(3)
+    @heartbeats = current_user.heartbeats.page(params[:page]).per(3)
   end
 
   # GET /heartbeats/1
   # GET /heartbeats/1.json
   def show
+    @heartbeats = Heartbeat.find_by(user_id: current_user.id) if current_user
   end
 
   # GET /heartbeats/new
   def new
-    @heartbeat = Heartbeat.new
+    @heartbeat = current_user.heartbeats.build
   end
 
   # GET /heartbeats/1/edit
@@ -25,7 +26,7 @@ class HeartbeatsController < ApplicationController
   # POST /heartbeats
   # POST /heartbeats.json
   def create
-    @heartbeat = Heartbeat.new(heartbeat_params)
+    @heartbeat = current_user.heartbeats.build(heartbeat_params)
 
     respond_to do |format|
       if @heartbeat.save
@@ -55,10 +56,14 @@ class HeartbeatsController < ApplicationController
   # DELETE /heartbeats/1
   # DELETE /heartbeats/1.json
   def destroy
-    @heartbeat.destroy
-    respond_to do |format|
-      format.html { redirect_to heartbeats_url, notice: 'Heartbeat was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @heartbeat.user.id
+      @heartbeat.destroy
+      respond_to do |format|
+        format.html { redirect_to heartbeats_url, notice: 'Heartbeat was successfully destroyed.' }
+        format.json { head :no_content }
+        end
+    else
+    redirect_to root_path, notice: "You don't have permission."
     end
   end
 

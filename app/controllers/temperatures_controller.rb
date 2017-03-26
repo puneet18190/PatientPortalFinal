@@ -5,17 +5,18 @@ class TemperaturesController < ApplicationController
   # GET /temperatures
   # GET /temperatures.json
   def index
-    @temperatures = Temperature.all.page(params[:page]).per(3)
+    @temperatures = current_user.temperatures.page(params[:page]).per(3)
   end
 
   # GET /temperatures/1
   # GET /temperatures/1.json
   def show
+    @temperatures = Temperature.find_by(user_id: current_user.id) if current_user
   end
 
   # GET /temperatures/new
   def new
-    @temperature = Temperature.new
+    @temperature = current_user.temperatures.build
   end
 
   # GET /temperatures/1/edit
@@ -25,7 +26,7 @@ class TemperaturesController < ApplicationController
   # POST /temperatures
   # POST /temperatures.json
   def create
-    @temperature = Temperature.new(temperature_params)
+    @temperature = current_user.temperatures.build(temperature_params)
 
     respond_to do |format|
       if @temperature.save
@@ -55,10 +56,14 @@ class TemperaturesController < ApplicationController
   # DELETE /temperatures/1
   # DELETE /temperatures/1.json
   def destroy
-    @temperature.destroy
-    respond_to do |format|
-      format.html { redirect_to temperatures_url, notice: 'Temperature was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @temperature.user.id
+      @temperature.destroy
+      respond_to do |format|
+        format.html { redirect_to temperatures_url, notice: 'Temperature was successfully destroyed.' }
+        format.json { head :no_content }
+        end
+    else
+    redirect_to root_path, notice: "You don't have permission."
     end
   end
 

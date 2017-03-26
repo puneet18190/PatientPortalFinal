@@ -5,17 +5,18 @@ class WeightsController < ApplicationController
   # GET /weights
   # GET /weights.json
   def index
-    @weights = Weight.all.page(params[:page]).per(3)
+    @weights = current_user.weights.page(params[:page]).per(3)
   end
 
   # GET /weights/1
   # GET /weights/1.json
   def show
+    @weights = Weight.find_by(user_id: current_user.id) if current_user
   end
 
   # GET /weights/new
   def new
-    @weight = Weight.new
+    @weight = current_user.weights.build
   end
 
   # GET /weights/1/edit
@@ -25,7 +26,7 @@ class WeightsController < ApplicationController
   # POST /weights
   # POST /weights.json
   def create
-    @weight = Weight.new(weight_params)
+    @weight = current_user.weights.build(weight_params)
 
     respond_to do |format|
       if @weight.save
@@ -55,10 +56,14 @@ class WeightsController < ApplicationController
   # DELETE /weights/1
   # DELETE /weights/1.json
   def destroy
-    @weight.destroy
-    respond_to do |format|
-      format.html { redirect_to weights_url, notice: 'Weight was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @weight.user.id
+      @weight.destroy
+      respond_to do |format|
+        format.html { redirect_to weights_url, notice: 'Weight was successfully destroyed.' }
+        format.json { head :no_content }
+        end
+    else
+      redirect_to root_path, notice: "You don't have permission."
     end
   end
 

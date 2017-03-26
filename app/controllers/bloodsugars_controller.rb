@@ -5,17 +5,18 @@ class BloodsugarsController < ApplicationController
   # GET /bloodsugars
   # GET /bloodsugars.json
   def index
-    @bloodsugars = Bloodsugar.all.page(params[:page]).per(3)
+    @bloodsugars = current_user.bloodsugars.page(params[:page]).per(3)
   end
 
   # GET /bloodsugars/1
   # GET /bloodsugars/1.json
   def show
+    @bloodsugars = Bloodsugar.find_by(user_id: current_user.id) if current_user
   end
 
   # GET /bloodsugars/new
   def new
-    @bloodsugar = Bloodsugar.new
+    @bloodsugar = current_user.bloodsugars.build
   end
 
   # GET /bloodsugars/1/edit
@@ -25,11 +26,11 @@ class BloodsugarsController < ApplicationController
   # POST /bloodsugars
   # POST /bloodsugars.json
   def create
-    @bloodsugar = Bloodsugar.new(bloodsugar_params)
+    @bloodsugar = current_user.bloodsugars.build(bloodsugar_params)
 
     respond_to do |format|
       if @bloodsugar.save
-        format.html { redirect_to @bloodsugar, notice: 'Bloodsugar was successfully created.' }
+        format.html { redirect_to @bloodsugar, notice: 'bloodsugar was successfully created.' }
         format.json { render :show, status: :created, location: @bloodsugar }
       else
         format.html { render :new }
@@ -43,7 +44,7 @@ class BloodsugarsController < ApplicationController
   def update
     respond_to do |format|
       if @bloodsugar.update(bloodsugar_params)
-        format.html { redirect_to @bloodsugar, notice: 'Bloodsugar was successfully updated.' }
+        format.html { redirect_to @bloodsugar, notice: 'bloodsugar was successfully updated.' }
         format.json { render :show, status: :ok, location: @bloodsugar }
       else
         format.html { render :edit }
@@ -55,10 +56,14 @@ class BloodsugarsController < ApplicationController
   # DELETE /bloodsugars/1
   # DELETE /bloodsugars/1.json
   def destroy
-    @bloodsugar.destroy
-    respond_to do |format|
-      format.html { redirect_to bloodsugars_url, notice: 'Bloodsugar was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @bloodsugar.user.id
+      @bloodsugar.destroy
+      respond_to do |format|
+        format.html { redirect_to bloodsugars_url, notice: 'bloodsugar was successfully destroyed.' }
+        format.json { head :no_content }
+        end
+    else
+    redirect_to root_path, notice: "You don't have permission."
     end
   end
 
@@ -70,6 +75,6 @@ class BloodsugarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bloodsugar_params
-      params.require(:bloodsugar).permit(:date, :fasting, :nonfasting,  :unit)
+      params.require(:bloodsugar).permit(:date, :fasting, :nonfasting, :unit)
     end
 end

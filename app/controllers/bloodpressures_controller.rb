@@ -2,21 +2,21 @@ class BloodpressuresController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bloodpressure, only: [:show, :edit, :update, :destroy]
 
-
   # GET /bloodpressures
   # GET /bloodpressures.json
   def index
-    @bloodpressures = Bloodpressure.all
+    @bloodpressures = current_user.bloodpressures.page(params[:page]).per(3)
   end
 
   # GET /bloodpressures/1
   # GET /bloodpressures/1.json
   def show
+    @bloodpressures = Bloodpressure.find_by(user_id: current_user.id) if current_user
   end
 
   # GET /bloodpressures/new
   def new
-    @bloodpressure = Bloodpressure.new
+    @bloodpressure = current_user.bloodpressures.build
   end
 
   # GET /bloodpressures/1/edit
@@ -26,11 +26,11 @@ class BloodpressuresController < ApplicationController
   # POST /bloodpressures
   # POST /bloodpressures.json
   def create
-    @bloodpressure = Bloodpressure.new(bloodpressure_params)
+    @bloodpressure = current_user.bloodpressures.build(bloodpressure_params)
 
     respond_to do |format|
       if @bloodpressure.save
-        format.html { redirect_to @bloodpressure, notice: 'Bloodpressure was successfully created.' }
+        format.html { redirect_to @bloodpressure, notice: 'bloodpressure was successfully created.' }
         format.json { render :show, status: :created, location: @bloodpressure }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class BloodpressuresController < ApplicationController
   def update
     respond_to do |format|
       if @bloodpressure.update(bloodpressure_params)
-        format.html { redirect_to @bloodpressure, notice: 'Bloodpressure was successfully updated.' }
+        format.html { redirect_to @bloodpressure, notice: 'bloodpressure was successfully updated.' }
         format.json { render :show, status: :ok, location: @bloodpressure }
       else
         format.html { render :edit }
@@ -56,10 +56,14 @@ class BloodpressuresController < ApplicationController
   # DELETE /bloodpressures/1
   # DELETE /bloodpressures/1.json
   def destroy
-    @bloodpressure.destroy
-    respond_to do |format|
-      format.html { redirect_to bloodpressures_url, notice: 'Bloodpressure was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @bloodpressure.user.id
+      @bloodpressure.destroy
+      respond_to do |format|
+        format.html { redirect_to bloodpressures_url, notice: 'bloodpressure was successfully destroyed.' }
+        format.json { head :no_content }
+        end
+    else
+    redirect_to root_path, notice: "You don't have permission."
     end
   end
 
@@ -71,6 +75,6 @@ class BloodpressuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bloodpressure_params
-      params.require(:bloodpressure).permit(:date, :systolic, :dystolic,:measuredd)
+      params.require(:bloodpressure).permit(:date, :systolic, :dystolic, :measuredd)
     end
 end
