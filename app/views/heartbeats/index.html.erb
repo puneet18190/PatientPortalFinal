@@ -8,7 +8,7 @@
 <h1>Heartbeats</h1>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div style="border:2px solid black">
-<%= line_chart Heartbeat.group("date(heartbeats.date)").average(:count),xtitle: "Date", ytitle: "Beats per Minute"%>
+<%= line_chart Heartbeat.where(:user_id => current_user.id).group("date(heartbeats.date)").average(:count),xtitle: "Date", ytitle: "Beats per Minute"%>
 </div>
 <br>
 <table class ="table table-striped">

@@ -9,8 +9,8 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div style="border:2px solid black">
 <%= line_chart [
-  {name: "Systolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:systolic)},
-  {name: "Dystolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:dystolic)}
+  {name: "Systolic", data: Bloodpressure.where(:user_id => current_user.id).group("date(bloodpressures.date)").average(:systolic)},
+  {name: "Dystolic", data: Bloodpressure.where(:user_id => current_user.id).group("date(bloodpressures.date)").average(:dystolic)}
 ] %>
 </div>
 <br>

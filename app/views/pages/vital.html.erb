@@ -3,14 +3,15 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
    <div class = "col-sm-6 col-md-3">
       <div class = "thumbnail">
-         <%= line_chart Heartbeat.group("date(heartbeats.date)").average(:count),xtitle: "Date", ytitle: "Beats per Minute"%>
+         <%= line_chart Heartbeat.where(:user_id => current_user.id).group("date(heartbeats.date)").average(:count),xtitle: "Date", ytitle: "Beats per Minute"%>
+         
       </div>
 
       <div class = "caption">
-         <h3>Heartbeats!</h3>
+         <h3>Heartbeats</h3>
          <p>
             <a href = "<%= heartbeats_path %>" class = "btn btn-primary" role = "button">
-               Upload Your Heartbeat Now!
+               Record Heartbeat
             </a>
          </p>
       </div>
@@ -18,14 +19,14 @@
 
    <div class = "col-sm-6 col-md-3">
       <div class = "thumbnail">
-         <%= line_chart Temperature.group("date(temperatures.date)").average(:temperature),xtitle: "Date", ytitle: "Temperature"%>
+         <%= line_chart Temperature.where(:user_id => current_user.id).group("date(temperatures.date)").average(:temperature),xtitle: "Date", ytitle: "Temperature"%>
       </div>
 
       <div class = "caption">
-         <h3>Temperatures!</h3>
+         <h3>Temperatures</h3>
          <p>
             <a href = "<%= temperatures_path %>" class = "btn btn-primary" role = "button">
-               Upload Your Temperature Now!
+               Record Temperature
             </a>
          </p>
 
@@ -34,14 +35,14 @@
 
    <div class = "col-sm-6 col-md-3">
       <div class = "thumbnail">
-         <%= line_chart Weight.group("date(weights.date)").average(:weight),xtitle: "Date", ytitle: "Weight"%>
+         <%= line_chart Weight.where(:user_id => current_user.id).group("date(weights.date)").average(:weight),xtitle: "Date", ytitle: "Weight"%>
       </div>
 
       <div class = "caption">
-         <h3>Weights!</h3>
+         <h3>Weights</h3>
          <p>
             <a href = "<%= weights_path %>" class = "btn btn-primary" role = "button">
-               Upload Your Weight Now!
+               Record Weight
             </a>
          </p>
 
@@ -51,16 +52,16 @@
    <div class = "col-sm-6 col-md-3">
       <div class = "thumbnail">
         <%= line_chart [
-  {name: "Systolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:systolic)},
-  {name: "Dystolic", data: Bloodpressure.group("date(bloodpressures.date)").average(:dystolic)}
+  {name: "Systolic", data: Bloodpressure.where(:user_id => current_user.id).group("date(bloodpressures.date)").average(:systolic)},
+  {name: "Dystolic", data: Bloodpressure.where(:user_id => current_user.id).group("date(bloodpressures.date)").average(:dystolic)}
   ] %>
       </div>
 
       <div class = "caption">
-         <h3>Blood Pressure!</h3>
+         <h3>Blood-Pressure</h3>
          <p>
             <a href = "<%= bloodpressures_path %>" class = "btn btn-primary" role = "button">
-               Upload Your Blood-Pressure!
+               Record Blood-Pressure
             </a>
          </p>
 
@@ -69,16 +70,16 @@
     <div class = "col-sm-6 col-md-3">
       <div class = "thumbnail">
 <%= line_chart [
-  {name: "Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:fasting)},
-  {name: "Non-Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:nonfasting)}
+  {name: "Fasting", data: Bloodsugar.where(:user_id => current_user.id).group("date(bloodsugars.date)").average(:fasting)},
+  {name: "Non-Fasting", data: Bloodsugar.where(:user_id => current_user.id).group("date(bloodsugars.date)").average(:nonfasting)}
 ] %>
       </div>
 
       <div class = "caption">
-         <h3>Blood Sugar!</h3>
+         <h3>Blood-Sugar</h3>
          <p>
             <a href = "<%= bloodsugars_path %>" class = "btn btn-primary" role = "button">
-               Upload Your Blood-Sugar!
+               Record Blood-Sugar
             </a>
          </p>
 

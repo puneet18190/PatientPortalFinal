@@ -9,8 +9,8 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div style="border:2px solid black">
 <%= line_chart [
-  {name: "Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:fasting)},
-  {name: "Non-Fasting", data: Bloodsugar.group("date(bloodsugars.date)").average(:nonfasting)}
+  {name: "Fasting", data: Bloodsugar.where(:user_id => current_user.id).group("date(bloodsugars.date)").average(:fasting)},
+  {name: "Non-Fasting", data: Bloodsugar.where(:user_id => current_user.id).group("date(bloodsugars.date)").average(:nonfasting)}
 ] %>
 </div>
 <br>

@@ -8,7 +8,7 @@
 <h1>Body Temperatures</h1>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div style="border:2px solid black">
-<%= line_chart Temperature.group("date(temperatures.date)").average(:temperature),xtitle: "Date", ytitle: "Temperature"%>
+<%= line_chart Temperature.where(:user_id => current_user.id).group("date(temperatures.date)").average(:temperature),xtitle: "Date", ytitle: "Temperature"%>
 </div>
 <br>
 <table class ="table table-striped">

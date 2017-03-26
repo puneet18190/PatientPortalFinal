@@ -8,7 +8,7 @@
 <h1>Your Weight</h1>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <div style="border:2px solid black">
-  <%= line_chart Weight.group("date(weights.date)").average(:weight),xtitle: "Date", ytitle: "Weight"%>
+  <%= line_chart Weight.where(:user_id => current_user.id).group("date(weights.date)").average(:weight),xtitle: "Date", ytitle: "Weight"%>
 </div>
 <br>
 <table class ="table table-striped">
