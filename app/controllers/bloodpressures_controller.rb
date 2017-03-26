@@ -30,7 +30,7 @@ class BloodpressuresController < ApplicationController
 
     respond_to do |format|
       if @bloodpressure.save
-        format.html { redirect_to @bloodpressure, notice: 'bloodpressure was successfully created.' }
+        format.html { redirect_to @bloodpressure, notice: 'Bloodpressure Record Created' }
         format.json { render :show, status: :created, location: @bloodpressure }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class BloodpressuresController < ApplicationController
   def update
     respond_to do |format|
       if @bloodpressure.update(bloodpressure_params)
-        format.html { redirect_to @bloodpressure, notice: 'bloodpressure was successfully updated.' }
+        format.html { redirect_to @bloodpressure, notice: 'Bloodpressure Record Updated.' }
         format.json { render :show, status: :ok, location: @bloodpressure }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class BloodpressuresController < ApplicationController
     if current_user.id == @bloodpressure.user.id
       @bloodpressure.destroy
       respond_to do |format|
-        format.html { redirect_to bloodpressures_url, notice: 'bloodpressure was successfully destroyed.' }
+        format.html { redirect_to bloodpressures_url, notice: 'Bloodpressure Record Deleted' }
         format.json { head :no_content }
         end
     else

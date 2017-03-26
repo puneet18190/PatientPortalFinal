@@ -30,7 +30,7 @@ class BloodsugarsController < ApplicationController
 
     respond_to do |format|
       if @bloodsugar.save
-        format.html { redirect_to @bloodsugar, notice: 'bloodsugar was successfully created.' }
+        format.html { redirect_to @bloodsugar, notice: 'Bloodsugar Record Created' }
         format.json { render :show, status: :created, location: @bloodsugar }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class BloodsugarsController < ApplicationController
   def update
     respond_to do |format|
       if @bloodsugar.update(bloodsugar_params)
-        format.html { redirect_to @bloodsugar, notice: 'bloodsugar was successfully updated.' }
+        format.html { redirect_to @bloodsugar, notice: 'Bloodsugar Record Updated' }
         format.json { render :show, status: :ok, location: @bloodsugar }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class BloodsugarsController < ApplicationController
     if current_user.id == @bloodsugar.user.id
       @bloodsugar.destroy
       respond_to do |format|
-        format.html { redirect_to bloodsugars_url, notice: 'bloodsugar was successfully destroyed.' }
+        format.html { redirect_to bloodsugars_url, notice: 'Bloodsugar Record Deleted' }
         format.json { head :no_content }
         end
     else

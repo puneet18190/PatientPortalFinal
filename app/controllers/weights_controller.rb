@@ -30,7 +30,7 @@ class WeightsController < ApplicationController
 
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
+        format.html { redirect_to @weight, notice: 'Weight Record Created.' }
         format.json { render :show, status: :created, location: @weight }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class WeightsController < ApplicationController
   def update
     respond_to do |format|
       if @weight.update(weight_params)
-        format.html { redirect_to @weight, notice: 'Weight was successfully updated.' }
+        format.html { redirect_to @weight, notice: 'Weight Record Updated' }
         format.json { render :show, status: :ok, location: @weight }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class WeightsController < ApplicationController
     if current_user.id == @weight.user.id
       @weight.destroy
       respond_to do |format|
-        format.html { redirect_to weights_url, notice: 'Weight was successfully destroyed.' }
+        format.html { redirect_to weights_url, notice: 'Weight Record Deleted' }
         format.json { head :no_content }
         end
     else

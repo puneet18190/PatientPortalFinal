@@ -30,7 +30,7 @@ class TemperaturesController < ApplicationController
 
     respond_to do |format|
       if @temperature.save
-        format.html { redirect_to @temperature, notice: 'Temperature was successfully created.' }
+        format.html { redirect_to @temperature, notice: 'Temperature Record Created.' }
         format.json { render :show, status: :created, location: @temperature }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class TemperaturesController < ApplicationController
   def update
     respond_to do |format|
       if @temperature.update(temperature_params)
-        format.html { redirect_to @temperature, notice: 'Temperature was successfully updated.' }
+        format.html { redirect_to @temperature, notice: 'Temperature Record Updated.' }
         format.json { render :show, status: :ok, location: @temperature }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class TemperaturesController < ApplicationController
     if current_user.id == @temperature.user.id
       @temperature.destroy
       respond_to do |format|
-        format.html { redirect_to temperatures_url, notice: 'Temperature was successfully destroyed.' }
+        format.html { redirect_to temperatures_url, notice: 'Temperature Record Deleted' }
         format.json { head :no_content }
         end
     else

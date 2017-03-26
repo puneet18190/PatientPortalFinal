@@ -30,7 +30,7 @@ class HeartbeatsController < ApplicationController
 
     respond_to do |format|
       if @heartbeat.save
-        format.html { redirect_to @heartbeat, notice: 'Heartbeat was successfully created.' }
+        format.html { redirect_to @heartbeat, notice: 'Heartbeat Record Created' }
         format.json { render :show, status: :created, location: @heartbeat }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class HeartbeatsController < ApplicationController
   def update
     respond_to do |format|
       if @heartbeat.update(heartbeat_params)
-        format.html { redirect_to @heartbeat, notice: 'Heartbeat was successfully updated.' }
+        format.html { redirect_to @heartbeat, notice: 'Heartbeat Record Updated' }
         format.json { render :show, status: :ok, location: @heartbeat }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class HeartbeatsController < ApplicationController
     if current_user.id == @heartbeat.user.id
       @heartbeat.destroy
       respond_to do |format|
-        format.html { redirect_to heartbeats_url, notice: 'Heartbeat was successfully destroyed.' }
+        format.html { redirect_to heartbeats_url, notice: 'Heartbeat Record Deleted.' }
         format.json { head :no_content }
         end
     else
