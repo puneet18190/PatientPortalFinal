@@ -41,5 +41,4 @@ Rails.application.routes.draw do
   post '/notify' => 'appointments#notify'
   post '/your_trips' => 'appointments#your_trips'
   
-  get '/search' => 'pages#search'
 end

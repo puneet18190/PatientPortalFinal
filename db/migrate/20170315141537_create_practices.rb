@@ -12,6 +12,7 @@ class CreatePractices < ActiveRecord::Migration
       t.string :insurance
       t.integer :zip_code
       t.integer :price
+      t.boolean :active
 
       t.timestamps null: false
     end

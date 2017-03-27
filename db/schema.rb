@@ -18,14 +18,14 @@ ActiveRecord::Schema.define(version: 20170322045450) do
     t.integer  "practice_id"
     t.date     "date"
     t.time     "time"
+    t.string   "reason"
     t.integer  "price"
     t.integer  "tax",         default: 100
-    t.integer  "coverage",    default: 150
-    t.integer  "total"
+    t.integer  "coverage",    default: 50
+    t.integer  "total",       default: 400
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "status"
-    t.text     "reason"
   end
 
   add_index "appointments", ["practice_id"], name: "index_appointments_on_practice_id"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170322045450) do
     t.string   "insurance"
     t.integer  "zip_code"
     t.integer  "price"
+    t.boolean  "active"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.float    "latitude"

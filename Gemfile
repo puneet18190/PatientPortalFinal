@@ -28,6 +28,7 @@ gem 'chartkick', '~> 1.2.4'
 gem 'kaminari', '~> 0.17.0'
 gem 'jquery-timepicker-rails'
 
+
                               
 group :development, :test do
   gem 'byebug'

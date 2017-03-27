@@ -117,6 +117,23 @@
 		        height: 400px;
 		      }
 		    </style>
+		    
+		<!-- Other doctor's Nearby -->
+		<h4>Other Doctor's Nearby</h4>
+		<div class="row">
+			<% for practice in @practice.nearbys(10) %>
+				
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<%= link_to practice.speciality, practice %><br>
+							(<%= practice.distance.round(2) %> miles away)
+						</div>
+					</div>
+				</div>
+
+			<% end %>
+		</div>
 
 		    <script src="https://maps.googleapis.com/maps/api/js"></script>
 		    <script>
@@ -131,7 +148,7 @@
 
 		        var marker = new google.maps.Marker({
 		        	position: new google.maps.LatLng(<%= @practice.latitude %>, <%= @practice.longitude %>),
-		        	title: "AirAlien" 
+		        	title: "PatientPortal" 
 		        });
 
 		        marker.setMap(map);

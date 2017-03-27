@@ -1,6 +1,6 @@
-<%= form_tag search_path, method: :get do %>
+
 <br>
-<hr>
+<br>
 
 <div class="row">
 	<% @practices.each do |practice| %>
@@ -14,11 +14,12 @@
 					<%= link_to practice.dr_first_name,practice %>
 					<%= link_to practice.dr_last_name,practice %><br>
 					<%= link_to practice.speciality, practice %><br>
-					<%= link_to practice.experience,practice %> Years of Experience
+					<%= link_to practice.experience,practice %> Years of Experience<br>
+				Address: <%= link_to practice.address,practice %><br>
+				Zipcode: <%= link_to practice.zip_code,practice %><br>
 				</div>
 			</div>
 		</div>
 
-	<% end %>
 	<% end %>
 </div>

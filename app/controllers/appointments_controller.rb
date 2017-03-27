@@ -1,15 +1,16 @@
 class AppointmentsController < ApplicationController
    before_action :authenticate_user!, except: [:notify]
+   
+   
 
 	def preload
 		practice = Practice.find(params[:practice_id])
 		today = Date.today
-		appointments = practice.appointments.where("date >= ? ", today)
+		appointments = practice.appointments.where("date >= ?", today)
 
 		render json: appointments
 	end
-
-
+	
 	def create
 		@appointment = current_user.appointments.create(appointment_params)
 
@@ -20,7 +21,7 @@ class AppointmentsController < ApplicationController
 				cmd: '_xclick',
 				upload: 1,
 				notify_url: 'https://patientportalfinal-shreya19888.c9users.io/notify',
-				amount: @appointment.price,
+				amount: @appointment.total,
 				item_name: @appointment.practice.speciality,
 				item_number: @appointment.id,
 				quantity: '1',
@@ -63,6 +64,6 @@ class AppointmentsController < ApplicationController
 		
 		
 		def appointment_params
-			params.require(:appointment).permit(:date, :time, :price, :total, :tax, :coverage, :practice_id)
+			params.require(:appointment).permit(:date, :hour, :price, :reason,  :total, :tax, :coverage, :practice_id)
 		end
 end
