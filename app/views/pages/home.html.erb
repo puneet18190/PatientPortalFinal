@@ -1,6 +1,9 @@
 
-<br>
-<br>
+<div class="text-center">
+	<h2>Find Doctors Closer to Home</h2>
+	<p>Find all kinds of specialists closer to home!</p>
+</div>
+
 
 <div class="row">
 	<% @practices.each do |practice| %>
@@ -11,6 +14,7 @@
 					<%= image_tag practice.photos[0].image.url(:medium) if practice.photos.length > 0 %>
 				</div>
 				<div class="panel-body">
+					<%= image_tag avatar_url(practice.user), class: "img-circle avatar-small" %>&nbsp;
 					<%= link_to practice.dr_first_name,practice %>
 					<%= link_to practice.dr_last_name,practice %><br>
 					<%= link_to practice.speciality, practice %><br>
