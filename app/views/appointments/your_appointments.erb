@@ -19,6 +19,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<%= appointment.date.strftime('%v') %>
+									<%= appointment.time.strftime('%H:%M %p')%>
 								</div>	
 								<div class="col-md-2">
 									<%= link_to user_path(appointment.user) do %>
@@ -26,7 +27,7 @@
 									<% end %>	
 								</div>	
 								<div class="col-md-2 right">
-									<h4>$<%= appointment.total %></h4>
+									<h4>$<%= appointment.price %></h4>
 								</div>
 								<div class="col-md-2 right">
 									<h4>$<%= appointment.reason %></h4>

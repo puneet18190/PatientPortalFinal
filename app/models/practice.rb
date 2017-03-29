@@ -18,4 +18,8 @@ class Practice < ActiveRecord::Base
  def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)
  end
+
+  def self.search(search)
+    where("speciality like ? OR zip_code like ?", "%#{search}%", "%#{search}%")
+  end
 end
