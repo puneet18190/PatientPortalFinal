@@ -15,3 +15,4 @@ class CreateAppointments < ActiveRecord::Migration
     end
   end
 end
+rails generate migration RemoveFieldNameFromTableName field_name:datatype

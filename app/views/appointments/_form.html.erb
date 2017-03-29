@@ -20,49 +20,43 @@
 	<%= f.hidden_field :price, value: @practice.price %>
 	<%= f.hidden_field :total, id: 'appointment_total' %>
 
-	
-	<div id="preview" style="display: none">
-		<h4><span id="message"></span></h4>
-
-		<table class="reservation-table" >
-			<tbody>
-				<tr>
-					<td>Insurance Coverage</td>
-					<td><span id="appointment_coverage"></span></td>
-				</tr>
-				<tr>
-					<td>Tax(s)</td>
-					<td><span id="appointment_tax"></span></td>
-				</tr>
-				<tr>
-					<td>Total</td>
-					<td><span id="appointment_total"></span></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
 	<br>
-	<%= f.submit "Book Your Appointment", class: "btn btn-primary" %>
+	<%= f.submit "Book Now", id: "btn_book", class: "btn btn-primary wide", disabled: 'true' %>
 	
 <% end %>
 
 
-<script>
+<script type="text/javascript">
 	$(function() {
-
 		$('#appointment_date').datepicker({
 			dateFormat: 'dd-mm-yy'
 		});
 		
         $('#appointment_time').timepicker({
-        	'minTime': '8:00pm',
+        	'minTime': '8:00am',
         	'maxTime': '4:30pm'});
-
+		
+		$("#appointment_date, #appointment_time").on("change", function(){
+			var time = $("#appointment_time").val();
+			var date = $("#appointment_date").val();
+			$.ajax({
+				url: "/check_date_time",
+				data: "date="+date+"&time="+time,
+				success: function(res){
+					if(res.status == false){
+						alert("Sorry this time has been booked by some other patient,please select a different time")
+						$('#btn_book').attr('disabled', true);
+						$("#appointment_time").val("");
+						$("#appointment_date").val("");
+					} else {
+						
+						$('#btn_book').attr('disabled', false);
+						
+						
+					}
+				}
+			})
+		})	
 	});
-	
-
-});
-
-	
+		
 </script>

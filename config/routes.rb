@@ -40,5 +40,7 @@ Rails.application.routes.draw do
 
   post '/notify' => 'appointments#notify'
   post '/your_trips' => 'appointments#your_trips'
+
+  get 'check_date_time' => 'appointments#check_date_time'
   
 end

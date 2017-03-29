@@ -21,7 +21,7 @@ class AppointmentsController < ApplicationController
 				cmd: '_xclick',
 				upload: 1,
 				notify_url: 'https://patientportalfinal-shreya19888.c9users.io/notify',
-				amount: @appointment.total,
+				amount: @appointment.price,
 				item_name: @appointment.practice.speciality,
 				item_number: @appointment.id,
 				quantity: '1',
@@ -59,11 +59,28 @@ class AppointmentsController < ApplicationController
 	def your_appointments
 		@practices = current_user.practices
 	end
+
+	def check_date_time
+		if params[:time].blank? || params[:date].blank?
+			render json: {status: true}
+		else
+			arr = []
+			arr1 = []
+			Appointment.all.map{|a| arr << "#{a.date} #{a.time.strftime("%T") }" unless a.time.nil? }
+			arr.map{|a| arr1 << DateTime.parse(a).to_i }
+			d = DateTime.parse("#{params[:date]} #{params[:time]}").to_i
+			if arr1.include?(d)
+				render json: {status: false}
+			else
+				render json: {status: true}
+			end
+		end
+	end
 	
 	private
 		
 		
 		def appointment_params
-			params.require(:appointment).permit(:date, :hour, :price, :reason,  :total, :tax, :coverage, :practice_id)
+			params.require(:appointment).permit(:date, :hour, :price, :reason, :practice_id, :time)
 		end
 end
