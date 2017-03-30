@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-  	@practices = Practice.all
+  	@practices = Practice.all.page(params[:page]).per(15)
 	if params[:search]
 		@practices = Practice.search(params[:search]).order("created_at DESC")
 	else
