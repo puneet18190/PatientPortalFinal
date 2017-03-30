@@ -18,10 +18,31 @@
 
 	<%= f.hidden_field :practice_id, value: @practice.id %>
 	<%= f.hidden_field :price, value: @practice.price %>
+
 	
+	<div id="preview" style="display: none">
+		<h4><span id="message"></span></h4>
+
+		<table class="reservation-table" >
+			<tbody>
+				<tr>
+					<td>Insurance Coverage</td>
+					<td><span id="appointment_coverage"></span></td>
+				</tr>
+				<tr>
+					<td>Tax(s)</td>
+					<td><span id="appointment_tax"></span></td>
+				</tr>
+				<tr>
+					<td>Total</td>
+					<td><span id="appointment_total"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<br>
-	<%= f.submit "Book Now", id: "btn_book", class: "btn btn-primary wide", disabled: 'true' %>
+	<%= f.submit "Book Your Appointment", class: "btn btn-primary" %>
 	
 <% end %>
 
@@ -29,7 +50,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#appointment_date').datepicker({
-			dateFormat: 'dd-mm-yy';
+			dateFormat: 'dd-mm-yy'
 		});
 		
         $('#appointment_time').timepicker({
@@ -44,15 +65,9 @@
 				data: "date="+date+"&time="+time,
 				success: function(res){
 					if(res.status == false){
-						alert("Sorry this time has been booked by some other patient,please select a different time")
-						$('#btn_book').attr('disabled', true);
+						alert("Date Time already allocated. Please select another time.")
 						$("#appointment_time").val("");
 						$("#appointment_date").val("");
-					} else {
-						
-						$('#btn_book').attr('disabled', false);
-						
-						
 					}
 				}
 			})

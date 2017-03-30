@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
 	def create
 		@review = current_user.reviews.create(review_params)
-		redirect_to practice
+		redirect_to @review.practice
 	end
 
 	def destroy
