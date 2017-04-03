@@ -5,8 +5,10 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-3 text-center">
+						<%= link_to user_path(@practice.user) do %>
 						<%= image_tag avatar_url(@practice.user), class: "img-circle avatar-large" %><br><br>
 						Dr.<%= @practice.dr_first_name %>
+						<% end %>
 					</div>
 
 					<div class="col-md-9">
