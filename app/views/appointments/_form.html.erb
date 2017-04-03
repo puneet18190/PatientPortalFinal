@@ -65,7 +65,7 @@
 				data: "date="+date+"&time="+time,
 				success: function(res){
 					if(res.status == false){
-						alert("Date Time already allocated. Please select another time.")
+						alert("Sorry this time has been booked by some other patient,please select a different time")
 						$("#appointment_time").val("");
 						$("#appointment_date").val("");
 					}

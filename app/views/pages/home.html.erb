@@ -4,14 +4,15 @@
 </div>
 
 <center>
-	<%= form_tag("/", :method => "get", class: "form-inline", style: "margin: 20px") do %>
+	<%= form_tag("/", :method => "get", class: "form-inline") do %>
 		<div class="form-group">
 			<%= text_field_tag :search, params[:search], placeholder: "Specialist / Zip-Code", class: "form-control" %>
 		</div>
 		<%= submit_tag "Search", class: "btn btn-primary" %>
 	<% end %>
 </center>
-
+<br>
+<hr>
 <div class="row">
 	<% if @practices.blank? %>
 		<h4>Sorry there are no results for your search : <%= params[:search] %>.</h4>
@@ -23,12 +24,11 @@
 					<div class="panel-heading preview" >
 						<%= image_tag practice.photos[0].image.url(:medium) if practice.photos.length > 0 %>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="height: 120px">
 						<%= image_tag avatar_url(practice.user), class: "img-circle avatar-small" %>&nbsp;
 						<%= link_to practice.dr_first_name,practice %>
 						<%= link_to practice.dr_last_name,practice %><br>
 						<%= link_to practice.speciality, practice %><br>
-						<%= link_to practice.experience,practice %> Years of Experience<br>
 					Address: <%= link_to practice.address,practice %><br>
 					Zipcode: <%= link_to practice.zip_code,practice %><br>
 					</div>
