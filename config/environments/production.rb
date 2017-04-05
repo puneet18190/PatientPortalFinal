@@ -76,4 +76,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.default_url_options = { host: 'patient-portal-final' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: 2525,
+    enable_starttls_auto: true,
+    user_name: 'shreya19888',
+    password: '123456789Sh',
+    authentication: 'plain'
+  }
 end
