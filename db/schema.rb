@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329141408) do
+ActiveRecord::Schema.define(version: 20170405024641) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20170329141408) do
     t.boolean  "is_insurance"
     t.integer  "user_id"
     t.string   "insurance"
-    t.integer  "zip_code"
+    t.string   "zip_code"
     t.integer  "price"
     t.boolean  "active"
     t.datetime "created_at",             null: false
