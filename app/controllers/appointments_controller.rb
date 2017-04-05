@@ -20,12 +20,12 @@ class AppointmentsController < ApplicationController
 				business: 'shreyachakrabarti19-facilitator@gmail.com',
 				cmd: '_xclick',
 				upload: 1,
-				notify_url: 'https://patientportalfinal-shreya19888.c9users.io/notify',
+				notify_url: 'http://patient-portal-final.herokuapp.com/notify',
 				amount: @appointment.price,
 				item_name: @appointment.practice.speciality,
 				item_number: @appointment.id,
 				quantity: '1',
-				return: 'https://patientportalfinal-shreya19888.c9users.io/your_trips'
+				return: 'http://patient-portal-final.herokuapp.com/your_trips'
 			}
 
 			redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
