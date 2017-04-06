@@ -66,7 +66,7 @@ class AppointmentsController < ApplicationController
 		else
 			arr = []
 			arr1 = []
-			Appointment.all.map{|a| arr << "#{a.date} #{a.time.strftime("%T") }" unless a.time.nil? }
+			Appointment.where(practice_id: params[:practice_id]).map{|a| arr << "#{a.date} #{a.time.strftime("%T") }" unless a.time.nil? }
 			arr.map{|a| arr1 << DateTime.parse(a).to_i }
 			d = DateTime.parse("#{params[:date]} #{params[:time]}").to_i
 			if arr1.include?(d)
